@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Página em Atualização</title>
+  <title>Formulário de Criação de Conteúdo</title>
   <style>
     body {
       margin: 0;
@@ -21,6 +21,62 @@
       100% { background-position: 0% 50%; }
     }
 
+    /* Estilos do botão de menu */
+    .menu-btn {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      display: inline-block;
+      text-align: center;
+      padding: 10px 20px;
+      background-color: #81ff8c;
+      color: #fff;
+      text-decoration: none;
+      font-size: 18px;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+      cursor: pointer;
+    }
+
+    .menu-btn:hover {
+      background-color: #1e90ff;
+    }
+
+    /* Estilos do menu lateral */
+    .side-menu {
+      position: fixed;
+      top: 0;
+      left: -250px;
+      width: 250px;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      color: white;
+      transition: 0.3s;
+      padding-top: 60px;
+      box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    .side-menu a {
+      display: block;
+      padding: 15px 25px;
+      text-decoration: none;
+      color: white;
+      font-size: 18px;
+      transition: background-color 0.3s;
+    }
+
+    .side-menu a:hover {
+      background-color: #575757;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
     .container {
       max-width: 800px;
       margin: 60px auto;
@@ -30,61 +86,219 @@
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     }
 
-    .card {
-      padding: 20px;
-      background-color: #fff;
-      color: #333;
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    h1 {
       text-align: center;
+      font-size: 36px;
+      margin-bottom: 20px;
     }
 
-    .card h2 {
-      margin-bottom: 10px;
-      color: #ff4500;
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
     }
 
-    .status-message {
-      margin-top: 20px;
-      font-size: 18px;
-      color: #ff4500;
-      text-align: center;
+    .radio-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
-    .back-btn {
-      display: block;
-      margin: 40px auto;
-      padding: 10px 20px;
-      background-color: #ff4500;
+    input[type="radio"] {
+      margin-left: 0;
+      margin-right: 10px;
+    }
+
+    input[type="text"], input[type="email"], textarea {
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      width: 80%; 
+      margin: 0 auto;
+    }
+
+    .submit-btn {
+      padding: 15px 20px;
+      background-color: #1e90ff;
       color: #fff;
       border: none;
       border-radius: 5px;
       font-size: 18px;
       cursor: pointer;
-      text-decoration: none;
-      width: fit-content;
+      transition: background-color 0.3s;
+      width: 100%;
       text-align: center;
     }
 
-    .back-btn:hover {
-      background-color: #e63946;
+    .submit-btn:hover {
+      background-color: #00bfff;
+    }
+
+    .submit-btn:active {
+      background-color: #007acc;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.6);
+      color: #fff;
+      margin-top: 40px;
+    }
+
+    .additional-questions {
+      display: none;
+      margin-top: 20px;
+    }
+
+    .show {
+      display: block;
+    }
+
+    .text-group {
+      margin-bottom: 20px;
+    }
+
+    .notification {
+      margin: 20px;
+      padding: 15px;
+      background-color: #ff5733;
+      color: white;
+      text-align: center;
+      font-size: 18px;
+      border-radius: 5px;
     }
   </style>
 </head>
 <body>
 
-<div class="container">
-  <div class="card">
-    <h2>Página em Atualização</h2>
-    <p>Esta página está passando por atualização e não está funcional no momento. Por favor, aguarde!</p>
-  </div>
-
-  <div class="status-message">
-    Estamos trabalhando para melhorar a experiência! Fique atento às novidades.
-  </div>
-
-  <a href="index.html" class="back-btn">Voltar ao Início</a>
+<!-- Botão de Menu -->
+<div class="menu-btn" id="menuBtn" onclick="toggleMenu()">
+  ☰
 </div>
+
+<!-- Menu Lateral -->
+<div class="side-menu" id="sideMenu">
+  <div class="close-btn" onclick="toggleMenu()">❌</div>
+  <a href="index.html">inicio</a>
+  <a href="https://wa.me/5514988135145">contato</a>
+  <a href="cursos.html">cursos</a>
+  <a href="sobrenos.html">sobre nós</a>
+</div>
+
+<div class="container">
+  <!-- Mensagem de Notificação -->
+  <div class="notification">
+    Este formulário está passando por atualização e ainda não está funcional. Por favor, aguarde!
+  </div>
+
+  <!-- Título -->
+  <h1>Qual conteúdo deseja criar?</h1>
+
+  <form action="#" method="POST" id="contentForm">
+    <div class="radio-group">
+      <input type="radio" id="videos" name="conteudo" value="videos" onclick="toggleQuestions()">
+      <span>Vídeos Animados</span>
+    </div>
+    <div class="radio-group">
+      <input type="radio" id="sites" name="conteudo" value="sites" onclick="toggleQuestions()">
+      <span>Sites</span>
+    </div>
+    <div class="radio-group">
+      <input type="radio" id="apps" name="conteudo" value="apps" onclick="toggleQuestions()">
+      <span>Aplicativos</span>
+    </div>
+
+    <div class="additional-questions" id="videos-questions">
+      <div class="text-group">
+        <input type="text" id="video-estilo" name="video-estilo" placeholder="Qual estilo de vídeo animado você prefere? (Exemplo: 3D, 2D, animação stop-motion)">
+      </div>
+      <div class="text-group">
+        <input type="text" id="video-duracao" name="video-duracao" placeholder="Qual a duração aproximada do vídeo? (Exemplo: 1 minuto, 2 minutos)">
+      </div>
+    </div>
+
+    <div class="additional-questions" id="sites-questions">
+      <div class="text-group">
+        <input type="text" id="site-estilo" name="site-estilo" placeholder="Qual estilo de site você deseja? (Exemplo: minimalista, corporativo)">
+      </div>
+      <div class="text-group">
+        <input type="text" id="site-funcionalidade" name="site-funcionalidade" placeholder="Que funcionalidades o site deve ter? (Exemplo: formulários, integração com redes sociais)">
+      </div>
+    </div>
+
+    <div class="additional-questions" id="apps-questions">
+      <div class="text-group">
+        <input type="text" id="app-plataforma" name="app-plataforma" placeholder="Para qual plataforma você deseja o aplicativo? (Exemplo: Android, iOS, Windows)">
+      </div>
+      <div class="text-group">
+        <input type="text" id="app-funcionalidade" name="app-funcionalidade" placeholder="Quais funcionalidades o aplicativo deve ter? (Exemplo: login, notificações push)">
+      </div>
+    </div>
+
+    <div class="text-group">
+      <input type="text" id="nome" name="nome" placeholder="Digite seu nome" required>
+    </div>
+
+    <div class="text-group">
+      <input type="email" id="email" name="email" placeholder="Digite seu email" required>
+    </div>
+
+    <div>
+      <button type="submit" class="submit-btn">Enviar</button>
+    </div>
+  </form>
+</div>
+
+<footer>
+  <p>&copy; 2025 Criador de Conteúdo Digital. Todos os direitos reservados.</p>
+</footer>
+
+<script>
+  // Função para alternar a visibilidade do menu lateral
+  function toggleMenu() {
+    const sideMenu = document.getElementById('sideMenu');
+    const menuBtn = document.getElementById('menuBtn');
+    
+    const currentLeft = sideMenu.style.left;
+    
+    if (currentLeft === '0px') {
+      sideMenu.style.left = '-250px';
+      menuBtn.style.display = 'inline-block'; // Mostrar o botão novamente
+    } else {
+      sideMenu.style.left = '0px';
+      menuBtn.style.display = 'none'; // Esconder o botão
+    }
+  }
+
+  function toggleQuestions() {
+    const videosQuestions = document.getElementById("videos-questions");
+    const sitesQuestions = document.getElementById("sites-questions");
+    const appsQuestions = document.getElementById("apps-questions");
+    
+    const selectedContent = document.querySelector('input[name="conteudo"]:checked');
+    
+    videosQuestions.classList.remove('show');
+    sitesQuestions.classList.remove('show');
+    appsQuestions.classList.remove('show');
+    
+    if (selectedContent) {
+      if (selectedContent.value === "videos") {
+        videosQuestions.classList.add('show');
+      } else if (selectedContent.value === "sites") {
+        sitesQuestions.classList.add('show');
+      } else if (selectedContent.value === "apps") {
+        appsQuestions.classList.add('show');
+      }
+    }
+  }
+
+  document.getElementById("contentForm").onsubmit = function(event) {
+    event.preventDefault();
+    alert("Formulário enviado!");
+  };
+</script>
 
 </body>
 </html>
